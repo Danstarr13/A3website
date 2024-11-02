@@ -1,0 +1,674 @@
+/*Global styling rules*/
+* {
+  box-sizing: border-box;
+}
+/*Custom fonts*/
+@font-face {
+  font-family: 'BrushscriptMT';
+  src: url(fonts/BrushscriptMT.TTF);
+}
+
+@font-face {
+  font-family: 'Conthrax';
+  src: url(fonts/conthrax-sb.otf);
+}
+/*Animations*/
+/*Moves a line of text from left to right and fades it in*/
+@keyframes titleText {
+  0% {
+    transform: translateX(-20%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+/*Use this to fade in any image*/
+@keyframes imageFade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+/*Use this to fade out any image*/
+@keyframes imageFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/*Little bounce animation for the arrow under the explore text at the bottom of the hero image*/
+@keyframes bounce {
+  0% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20%);
+    opacity: 0;
+  }
+}
+/*This gently fades the product display box in as the user scrolls down to it*/
+@keyframes productFade {
+  from {scale: .8; background-color: rgba(128,128,128,0);}
+  to {scale: 1; background-color: rgba(128,128,128,0.5);}
+}
+/*Rotates the canvas when the spin cycle is activated*/
+@keyframes spin {
+  0% {
+    rotate: 0deg;
+  }
+  100% {
+    rotate: 360deg;
+  }
+}
+/*Zooms the canvas in when the spin cycle is activated*/
+@keyframes zoom {
+  0% {
+    scale: 1;
+  }
+  100% {
+    scale: 2;
+  }
+}
+/*This controls the movement and opacity animation when switching to the next review*/
+@keyframes imageChange {
+  0% {
+    transform: translateX(-300px);
+    opacity: 0;
+    scale: 0.8;
+  }
+  25% {
+    transform: translateX(0px);
+    opacity: 1;
+    scale: 1;
+  }
+  75% {
+    transform: translateX(0px);
+    opacity: 1;
+    scale: 1.1;
+  }
+  100% {
+    transform: translateX(300px);
+    opacity: 0;
+    scale: 0.8;
+  }
+}
+/*Adds a gentle zoom effect to the hero image at the top of the page that loops infinitely*/
+@keyframes heroMovement {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.2;
+  }
+  100% {
+    scale: 1;
+  }
+}
+/*Animation classes (essentially animations that are able to be added and removed from html elements when actions are performed by the user)*/
+@media (prefers-reduced-motion: no-preference) {
+  .idle {
+    animation: zoom 250ms 3s 1 ease-in-out, spin 60s 3.25s infinite linear;
+    animation-fill-mode: forwards;
+  }
+  .change {
+    animation: imageChange 5s 0s infinite ease-out;
+    animation-fill-mode: forwards;
+  }
+  .fadeIn {
+    animation: imageFade 1s 0s 1 ease-in-out;
+    animation-fill-mode: forwards;
+  }
+  .fadeOut {
+    animation: imageFadeOut 1s 0s 1 ease-in-out;
+    animation-fill-mode: forwards;
+  }
+}
+/*HTML styling*/
+body {
+  position: relative; /*This is required so that position absolute can be used in a child element in relation to this elements position*/
+  background-color: white;
+  color: white;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  overflow-x: hidden; /*Stop the body from growing sideways when scaling 100% width div elements up and down such as the hero image at the top and rotating the canvas, this line disables the horizontal scroll completely*/
+}
+/*Container for the top section of content on the page*/
+.container {
+  position: relative;
+  height: auto;
+  width: auto;
+  background-color: black;
+  margin: 0;
+  z-index: 10;
+}
+
+.top {
+  position: fixed; /*Position fixed ensures this element always stays visible on the page no matter where you scroll to*/
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%;
+  background-color: transparent;
+  margin: 0;
+  z-index: 999; /*This is used to make sure an element is always on top of everything else, in this case, the dropdown menu and company logo are always positioned on top of everything and always visible no matter where you are on the page*/
+}
+
+.topBG {
+  margin: 0;
+  width: 100%;
+  height: auto;
+  animation: 3s ease-in-out 0s 1 imageFade, 30s ease-in-out 0s infinite heroMovement;
+}
+/*Container for the animaed text over the hero image*/
+.titleText {
+  position: absolute; /*This is used to override any normal positioning influence from surrounding elements and exactly position this element somewhere in relation to its parent so long as the parent has position relative*/
+  bottom: 30%;
+  right: 30%;
+  font-family: 'BrushscriptMT';
+  height: auto;
+  width: auto;
+  font-size: 50px;
+  color: white;
+}
+/*The following three classes are for the three lines of bold text at the top of the page that are each slightly offset to the right from each other and animate at different times*/
+.title1 {
+  opacity: 0;
+  font-size: 60px;
+  margin: 0;
+  line-height: 0.1;
+  animation: 2s ease-in-out 2s 1 titleText;
+  animation-fill-mode: both;
+}
+
+.title2 {
+  opacity: 0;
+  margin-left: 100px;
+  font-size: 150px;
+  line-height: 0.1;
+  animation: 2s ease-in-out 3s 1 titleText;
+  animation-fill-mode: both;
+}
+
+.subtitle {
+  opacity: 0;
+  font-family: "big-caslon-fb", serif;
+  font-size:  30px;
+  margin-left: 200px;
+  line-height: 0.1;
+  animation: 2s ease-in-out 4s 1 titleText;
+  animation-fill-mode: both;
+}
+
+.logo {
+  height: auto;
+  width: 10vw;
+  min-width: 150px;
+  display: inline;
+  margin: 30px;
+}
+/*This is the icon for the dropdown menu utilising a shoelace UI element*/
+.hamburger {
+  height: 50px;
+  width: 50px;
+  margin-left: 310px;
+  transition: scale 500ms;
+}
+/*Container for the dropdown menu and all its elements*/
+nav {
+  margin-top: 50px;
+  height: auto;
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/*Hidden checkbox*/
+.dropdown {
+  display: none;
+}
+
+a {
+  font-family: "big-caslon-fb", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 30px;
+  color: white;
+  text-decoration: none;
+}
+/*Each item in the dropdown menu is a flexbox because it was easier to justify and center content by the same amount across all of them so they would all line up on the right side*/
+.item {
+  display: flex;
+  height: auto;
+  width: auto;
+  margin: 10px;
+  padding: 10px 0;
+  justify-content: right;
+  align-items: center;
+}
+
+.item > * {
+  opacity: 0.5;
+  margin-right: 50px;
+  transition: opacity 500ms;
+}
+/*The dropdown menu container*/
+.section-dropdown {
+  opacity: 0;
+  background-image: url(images/dropdown.png); /*This is the line between each item in the dropdown menu, it was easier making it a background image and positioning it behind the items than making it an actual element on its own*/
+  background-repeat: no-repeat;
+  background-position-x: 200px;
+  background-size: 270px;
+  transition: opacity 500ms;
+}
+/*This is the little circle that appears between a name and icon when you hover over a dropdown menu item*/
+.circle {
+  opacity: 0;
+  height: 30px;
+  width: 30px;
+}
+
+.icon {
+  height: 80px;
+  width: 80px;
+}
+
+.item:hover > * {
+  opacity: 1;
+}
+/*Show/hide the dropdown menu when the hamburger icon is clicked*/
+.dropdown:checked ~ .section-dropdown {
+  opacity: 1;
+}
+
+.hamburger:hover {
+  scale: 1.5;
+}
+/*Container for the middle section of content on the page (mainly empty space for showing the Diana TC frame animation*/
+.middle {
+  position: sticky; /*Sticky is used to keep certain sections in view as the user moves up and down the page*/
+  top: 0;
+  height: 8000px; /*Give enough vertical scroll space to play out the frame animation*/
+  width: 100%;
+  background-color: black;
+}
+/*This is the main canvas element that displays the frame animation in the background as you scroll down the page*/
+.anim {
+  position: sticky;
+  top: 0;
+  height: auto;
+  width: 100%;
+  margin: 0;
+  z-index: -999;
+}
+/*Container for the bottom section of content including the testimonials and product display box*/
+.bottom {
+  position: sticky;
+  height: 3000px;
+  width: 100%;
+  top: 0;
+  margin: 0;
+  background-color: transparent;
+}
+/*Informational text at the very bottom of the page*/
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: transparent;
+  color: white;
+  font-size: 20px;
+  font-family: 'big-caslon-fb', serif;
+  width: 100%;
+  height: auto;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.miscText {
+  font-family: 'Conthrax';
+  font-size: 20px;
+  color: black;
+  line-height: 0.1;
+  padding-top: 20px;
+}
+/*Container for the explore text and arrow at the bottom of the hero image*/
+.explore {
+  position: absolute;
+  bottom: 100px;
+  height: auto;
+  width: 100%;
+  text-align: center;
+  background-color: transparent;
+}
+
+.arrow {
+  color: black;
+  scale: 3;
+  animation: 6s ease-in-out 0s infinite bounce;
+  margin-top: 30px;
+}
+/*Container for the product display at the bottom of the page*/
+.productContainer {
+  font-family: 'big-caslon-fb', serif;
+  color: white;
+  height: auto;
+  width:calc(2500px - 50vw);
+  min-width:500px; /* let's have a minimum boundary */
+  max-width:50%; /* and a maximum boundary */
+  position: sticky;
+  top: 500px;
+  margin: 0 auto;
+  background-color: rgba(128, 128, 128, 0);
+  border-radius: 50px;
+  animation: productFade linear;
+  animation-timeline: view(); /*This line I had trouble getting to work, it is supposed to control when an animation starts and finishes but I ended up being able to ignore it and just use the above line on its own*/
+  padding-top: 100px;
+  text-align: center;
+}
+
+.product {
+  width: max-content;
+  border: 5px solid white;
+  border-radius: 20px;
+  margin: 0 auto;
+}
+
+.dianaTC {
+  height: 300px;
+  width: 300px;
+}
+
+.productTitle {
+  font-size: 80px;
+  line-height: 0.2;
+}
+
+.productSubtitle {
+  font-size: 50px;
+  margin-left: 100px;
+  line-height: 0.2;
+}
+
+.productDescription {
+  font-size: 25px;
+  line-height: 1.5;
+  width: 80%;
+  margin: 70px auto;
+}
+
+.colourText {
+  font-size: 30px;
+  line-height: 0.5;
+}
+/*Button for showing/hiding the gallery*/
+.customiseButton {
+  width: 50%;
+  height: 10%;
+  border: 5px solid white;
+  border-radius: 20px;
+  margin: 50px auto;
+  transition: scale 500ms, background-color 500ms;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.customiseButton:hover {
+  scale: 1.2;
+  background-color: rgba(126, 51, 255, 0.5);
+}
+
+.customiseText {
+  font-family: 'big-caslon-fb', serif;
+  font-size: 30px;
+  color: white;
+}
+/*A few styling rules for the colour choices in the product display box*/
+.colours > * {
+  display: inline-block;
+}
+
+.colours {
+  height: auto;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.colourVisible {
+  border: 5px solid white;
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
+  margin: 0 auto;
+  margin-left: 5px;
+  margin-right: 5px;
+  transition: scale 500ms, border 500ms;
+}
+
+.colourChoice {
+  display: none;
+}
+
+.colourVisible:hover {
+  scale: 1.2;
+  border: 5px solid aquamarine;
+}
+/*Container for the user testimonials above the product display box*/
+.reviewSection {
+  position: sticky;
+  top: 100px;
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leftLine {
+  width: auto;
+  height: 100px;
+}
+
+.rightLine {
+  width: auto;
+  height: 100px;
+  transform: scaleX(-1);/*Flip the same image instead of having to have a second image taking up space*/
+}
+/*It was easier to make each review a single image rather than mess around with multiple divs with text and images combined, especially when I went to add the animation*/
+.reviews {
+  width: calc(2500px - 50vw);
+  height: auto;
+}
+/*Big background with partial opacity that shows when the gallery is focused to grey out the rest of the page and minimise distraction*/
+.galleryBG {
+  position: fixed;
+  display: none;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  background-color: rgba(44, 44, 44, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+/*This is the actual container for the gallery images and buttons which is centered inside the big transparent background*/
+.gallery {
+  text-align: center;
+  height: auto;
+  width: calc(4000px - 50vw);
+  max-width: 90%;
+  padding: 20px;
+  border-radius: 100px;
+  background-color: rgba(44, 44, 44, 1);
+}
+
+.buttons {
+  width: 100%;
+  height: 10vh;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.galleryButton {
+  background-color: grey;
+  border: 5px solid white;
+  border-radius: 10px;
+  display: inline;
+  height: auto;
+  width: 200px;
+  margin: 20px;
+  color: white;
+  font-size: 20px;
+  font-family: 'big-caslon-fb', serif;
+  cursor: pointer;
+  transition: background-color 500ms, scale 500ms;
+  padding: 20px;
+}
+/*These next two are used for adding and removing an opacity animation to each image as the user clicks next/previous, makes the image transition much smoother*/
+#current-image {
+  transition: all 0.5s ease-in-out;
+  opacity: 1;
+  height: auto;
+  width: 50%;
+}
+
+#current-image.fade-out{
+  opacity: 0;
+}
+
+.closeButton {
+  display: inline;
+  height: auto;
+  width: auto;
+  margin: 20px;
+  background-color: grey;
+  border: 5px solid white;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  transition: background-color 500ms, scale 500ms;
+  padding: 20px;
+}
+
+.galleryButton:hover {
+  background-color: purple;
+  scale: 1.1;
+}
+
+.closeButton:hover {
+  background-color: purple;
+  scale: 1.1;
+}
+/*Media query for mobile and desktop smaller than 1024px, above this everything should display and scale dynamically without the need for media query. I tried to make everything as dynamic as possible to minimise the amount of media queries required but some were still necessary.*/
+@media only screen and (max-width: 1024px) {
+  .anim {
+    scale: 5;
+    margin-top: 300px;
+  }
+
+  .title1 {
+    font-size: 20px;
+    margin-left: 20px;
+  }
+
+  .title2 {
+    font-size: 30px;
+    margin-left: 50px
+  }
+
+  .subtitle {
+    font-size: 10px;
+    margin-left: 80px;
+  }
+
+  .explore {
+    bottom: 0px;
+  }
+
+  .miscText {
+    font-size: 10px;
+  }
+
+  .dianaTC {
+    height: 100px;
+    width: 100px;
+  }
+
+  .productTitle {
+    font-size: 30px;
+
+  }
+
+  .productContainer {
+    padding-top: 20px;
+    top: 400px;
+  }
+
+  .productSubtitle {
+    font-size: 20px;
+    margin-left: 100px;
+  }
+
+  .productDescription {
+    font-size: 10px;
+    margin: 20px auto;
+  }
+
+  .colourText {
+    font-size: 20px;
+  }
+
+  .colourVisible {
+    height: 20px;
+    width: 20px;
+    border: 2px solid white;
+  }
+
+  .colourVisible:hover {
+    border: 2px solid aquamarine;
+  }
+
+  .customiseButton {
+    height: 5%;
+    width: 20%;
+    border: 2px solid white;
+    margin: 50px auto;
+  }
+
+  .customiseText {
+    font-size: 10px;
+  }
+
+  .galleryButton {
+    width: 100px;
+    margin: 10px;
+    font-size: 10px;
+  }
+
+  nav {
+    scale: 0.5;
+    transform: translate(200px, -350px);
+  }
+
+  @keyframes zoom {
+    0% {
+      scale: 5;
+    }
+    100% {
+      scale: 10;
+    }
+  }
+}

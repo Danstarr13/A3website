@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <!--General formatting and stylesheet references in the head-->
+  <head>
+    <meta charset="utf-8" />
+    <title>Scroll</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/wtu8gri.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.18.0/cdn/themes/light.css" />
+  </head>
+  <!--Main body content-->
+  <body>
+    <!--This top chunk is the gallery and is invisible until the browse styles button is clicked, it always has a fixed position when visible and does not impact other content positioning on the page but rather sits on top-->
+    <div class="galleryBG" id="galleryBG">
+      <div class="gallery" id="gallery">
+        <h1>Available Styles</h1>
+        <img src="images/style1.png" alt="image of headphones" class="styleImage" id="current-image">
+        <div class="buttons">
+          <!--Buttons for next/previous images as well as a close button which uses a shoelace UI element-->
+          <button class="galleryButton" id="previousButton">Previous</button>
+          <button class="galleryButton" id="nextButton">Next</button>
+          <button class="closeButton" id="closeButton"><sl-icon name="x-lg"></sl-icon></button>
+        </div>
+      </div>
+    </div>
+    <!--The page content is split into three main sections, a top hero-image, a middle animation showcase and a bottom product display-->
+    <!--Main container for the top section of the page-->
+    <div class="container">
+      <!--This is the hero image-->
+      <img class="topBG" src="images/bg.png">
+      <!--This is a container for the top bar including the company logo in the top left and the dropdown menu in the top right-->
+      <div class="top">
+        <img class="logo" src="images/logo.png">
+        <!--Container for the dropdown menu in the top right-->
+        <nav>
+          <!--This utilise the checkbox hack to display the menu and is shown/hidden with a hamburger menu-->
+          <input type="checkbox" id="dropdown" name="dropdown" class="dropdown">
+          <!--This is the hamburger icon which is utilising a shoelace UI element-->
+          <label for="dropdown"><sl-icon name="list" class="hamburger"></sl-icon></label>
+          <!--Main dropdown menu content-->
+          <div class="section-dropdown">
+            <!--an item class div is added for each entry in the dropdown menu, this is infinitely expandable for however many page links you want to have-->
+            <div class="item">
+              <!--Each item follows a simple formatting rule, item text, circle hover icon, item icon-->
+              <a href="#">Headphones</a>
+              <img class="circle" src="images/circle.png">
+              <img class="icon" src="images/Headphones.png">
+            </div>
+            <div class="item">
+              <a href="#">Electronics</a>
+              <img class="circle" src="images/circle.png">
+              <img class="icon" src="images/Electronics.png">
+            </div>
+            <div class="item">
+              <a href="#">Accessories</a>
+              <img class="circle" src="images/circle.png">
+              <img class="icon" src="images/Accessories.png">
+            </div>
+            <div class="item">
+              <a href="#">News</a>
+              <img class="circle" src="images/circle.png">
+              <img class="icon" src="images/News.png">
+            </div>
+            <div class="item">
+              <a href="#">Support</a>
+              <img class="circle" src="images/circle.png">
+              <img class="icon" src="images/Support.png">
+            </div>
+            <div class="item">
+              <a href="#">Contact</a>
+              <img class="circle" src="images/circle.png">
+              <img class="icon" src="images/Contact.png">
+            </div>
+          </div>
+        </nav>
+      </div>
+      <!--Animated text on the hero image-->
+      <div class="titleText">
+        <h2 class="title1">Discover</h1>
+        <h1 class="title2">Diana</h1>
+        <h3 class="subtitle">Beyond the farthest star...</h3>
+      </div>
+      <!--Explore prompt at the bottom of the hero image with animated arrow-->
+      <div class="explore">
+        <p class="miscText">Explore</p>
+        <sl-icon name="chevron-compact-down" class="arrow"></sl-icon>
+      </div>
+    </div>
+    <!--This is the middle section of the site which is essentially a big empty div with enough pre-set height to allow the frame animation to play through in the background-->
+    <div class="middle">
+      <!--This is the magic element that is updated with each frame as you scroll down and is also animated when the spin cycle is engaged at the bottom of the page-->
+      <canvas class="anim" id="anim"></canvas>
+    </div>
+    <!--This is the bottom section of the page which contains the product display and information along with animated user testimonials and a gallery button-->
+    <div class="bottom" id="bottom">
+      <!--This div contains the relevant elements to display the user testimonials-->
+      <div class="reviewSection">
+        <img class="leftLine" src="images/line.png">
+        <img class="reviews" id="reviews" src="images/Review1.png">
+        <img class="rightLine" src="images/line.png">
+      </div>
+      <!--This div contains the product display elements in a centralised box that has been stylised with animated buttons-->
+      <div class="productContainer">
+        <div class="product">
+          <img class="dianaTC" src="images/dianaTC.png">
+        </div>
+        <h2 class="productTitle">Diana</h2>
+        <h3 class="productSubtitle">TC</h3>
+        <p class="productDescription">This latest model Diana TC headphone pushes technology from our award winning flagship AB-1266 Phi TC into a thin lightweight form factor for amazing world-class dynamics, resolution, and refinement to sound in a stylish headphone.</p>
+        <p class="colourText">+ New Colours</p>
+        <!--This section contains the animated colour buttons to make a colour selection although no actual functional implementation has been made, it still animates when you hover-->
+        <div class="colours">
+          <input type="checkbox" id="green" class="colourChoice">
+          <label for="green"><div class="colourVisible" style="background-color: green;"></div></label>
+          <input type="checkbox" id="red" class="colourChoice">
+          <label for="red"><div class="colourVisible" style="background-color: red;"></div></label>
+          <input type="checkbox" id="purple" class="colourChoice">
+          <label for="red"><div class="colourVisible" style="background-color: purple;"></div></label>
+          <input type="checkbox" id="blue" class="colourChoice">
+          <label for="red"><div class="colourVisible" style="background-color: blue;"></div></label>
+          <input type="checkbox" id="orange" class="colourChoice">
+          <label for="red"><div class="colourVisible" style="background-color: orange;"></div></label>
+        </div>
+        <!--This is the browse styles button which when clicked, opens the gallery-->
+        <button class="customiseButton" id="customiseButton">
+          <p class="customiseText">Browse Styles</p>
+        </button>
+      </div>
+    </div>
+    <!--This section is just the text at the very bottom of the page. It also acts as the element the intersection observer is looking for to trigger the spin cycle event-->
+    <footer class="bottomOfPage">
+      <!--If there is no music playing, you need to interact with the site by clicking somewhere on the page at least once to get past chromes autoplay blocking, very annoying but unfortunately for my use case (controlling volume fade in/out etc in javascript) I couldn't find a way to embed the audio and play it without using autoplay-->
+      <p>Wait here for 3 seconds and turn up your volume to engage the magic spin cycle...</p>
+      <p>--- Made by Daniel Fletcher for Web Design A3 2024 ---</p>
+    </footer>
+  <!--JavaScript file references-->
+  <script src="main.js"></script>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.18.0/cdn/shoelace-autoloader.js"></script>
+</body>
+</html>
