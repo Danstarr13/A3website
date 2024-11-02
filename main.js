@@ -1,15 +1,25 @@
+/*jshint esversion: 6 */
+
 //These are just some general variable declarations used further down
 const html = document.documentElement;
-const body = document.getElementById('bottom');
 const canvas = document.getElementById("anim");
 const context = canvas.getContext("2d");
+
+//Audio related variables referenced in the observer code above
+var audio = new Audio('audio/halleysComet.wav');//in case you were wondering, this is a snippet from a song I wrote and produced myself and yes that's me attempting to sing, I hope you like it :)
+audio.loop = true;
+audio.volume = 0;
+//It's important to initialise timeout variables to null to ensure they always hold a valid value in case they are referenced before they actually hold a timeout object
+var T1 = null;
+var fadeIn = null;
+var fadeOut = null;
+var vol = 0;
+var interval = 100;
 
 //--START OF FRAME ANIMATION CODE--
 //This chunk sets up the algorithm for navigating the directory containing all of the individual images in the animation
 const frameCount = 88;
-const currentFrame = index => (
-  `animations/abyss/abyssAnim${index.toString().padStart(4, '0')}.jpg` //Takes in the custom naming convention used for the images and then appends four digits at the end to retrieve a single frame
-)
+const currentFrame = index => (`animations/abyss/abyssAnim${index.toString().padStart(4, '0')}.jpg`); //Takes in the custom naming convention used for the images and then appends four digits at the end to retrieve a single frame
 //Loops through all images in the sequence
 const preloadImages = () => {
   for (let i = 1; i < frameCount; i++) {
@@ -18,18 +28,18 @@ const preloadImages = () => {
   }
 };
 //Create an image object, set the image source to the first frame when page loads, set height and width of the canvas
-const img = new Image()
+const img = new Image();
 img.src = currentFrame(1);
 canvas.width=1920;
 canvas.height=1080;
 img.onload=function(){
   context.drawImage(img, 0, 0);
-}
+};
 //Update the image with a given index (the current scroll position rounded up to nearest whole number between 0 and frameCount)
 const updateImage = index => {
   img.src = currentFrame(index);
   context.drawImage(img, 0, 0);
-}
+};
 //When a scroll event is detected, retrieve the corresponding frame in the image sequence and update the image displayed on the canvas
 window.addEventListener('scroll', () => {  
     //These variables control what point the animation should start and end, here it's just starting at the top and ending at the bottom
@@ -41,10 +51,10 @@ window.addEventListener('scroll', () => {
         Math.ceil(scrollFraction * frameCount) //turns a decimal scroll position into the nearest whole number so as to always find an exact corresponding frame
     );
   //Update the canvas with the new image
-  requestAnimationFrame(() => updateImage(frameIndex + 1))
+  requestAnimationFrame(() => updateImage(frameIndex + 1));
 });
 
-preloadImages()//This lightens the load for slower devices by preloading all the images, which in turn leads to smoother animation playback
+preloadImages();//This lightens the load for slower devices by preloading all the images, which in turn leads to smoother animation playback
 //--END OF FRAME ANIMATION CODE--
 
 //--START OF OBSERVER CODE--
@@ -99,7 +109,7 @@ observer.observe(document.querySelector('.bottomOfPage'));
 //--END OF OBSERVER CODE--
 
 //--START OF REVIEW CHANGING CODE--
-var images = new Array();
+var images = [];
 for (var i = 1; i < 5; i++) {
    images.push("images/Review" + i + ".png"); //Adds all of the review images into a single array
 }
@@ -122,7 +132,7 @@ window.onload = function() {
     setInterval(function () {
         changeImage();
     }, 5000);
-}
+};
 //--END OF REVIEW CHANGING CODE--
 
 //Code specifically for the browse styles button
@@ -132,17 +142,6 @@ customise.addEventListener("click", function() {
     gallery.classList.remove('fadeOut'); //When the browse styles button is clicked, fade in the gallery
     gallery.classList.add('fadeIn');
 });
-
-//Audio related variables referenced in the observer code above
-var audio = new Audio('audio/halleysComet.wav');//in case you were wondering, this is a snippet from a song I wrote and produced myself and yes that's me attempting to sing, I hope you like it :)
-audio.loop = true;
-audio.volume = 0;
-//It's important to initialise timeout variables to null to ensure they always hold a valid value in case they are referenced before they actually hold a timeout object
-T1 = null;
-fadeIn = null;
-fadeOut = null;
-var vol = 0;
-var interval = 100;
 
 //Variables relating to the image gallery
 const gallery = document.getElementById('gallery');
@@ -169,7 +168,7 @@ nextButton.addEventListener('click', function() {
 
 //This function updates the gallery with the next/previous image based on the currentIndex value, it also handles the fadeIn and fadeOut animation between image changes
 function updateGalleryImage() {
-    const img = gallery.querySelector('#current-image')
+    const img = gallery.querySelector('#current-image');
     img.classList.add('fade-out');
     setTimeout(() => {
         img.src = galleryImages[currentIndex];
@@ -179,6 +178,7 @@ function updateGalleryImage() {
 }
 
 //Event listener for when the close button is clicked
+const closeButton = document.getElementById('closeButton');
 closeButton.addEventListener('click', function() {
     gallery.classList.remove('fadeIn'); //When the close button is clicked fade out the gallery
     gallery.classList.add('fadeOut');

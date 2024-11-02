@@ -421,17 +421,15 @@ footer {
   transition: scale 500ms, background-color 500ms;
   background-color: transparent;
   cursor: pointer;
+  font-family: 'big-caslon-fb', serif;
+  font-size: 30px;
+  color: white;
+  padding: 20px;
 }
 
 .customiseButton:hover {
   scale: 1.2;
   background-color: rgba(126, 51, 255, 0.5);
-}
-
-.customiseText {
-  font-family: 'big-caslon-fb', serif;
-  font-size: 30px;
-  color: white;
 }
 /*A few styling rules for the colour choices in the product display box*/
 .colours > * {
@@ -643,12 +641,9 @@ footer {
 
   .customiseButton {
     height: 5%;
-    width: 20%;
+    width: 30%;
     border: 2px solid white;
     margin: 50px auto;
-  }
-
-  .customiseText {
     font-size: 10px;
   }
 

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <!--General formatting and stylesheet references in the head-->
   <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <title>Scroll</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://use.typekit.net/wtu8gri.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.18.0/cdn/themes/light.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.18.0/cdn/themes/light.css">
   </head>
   <!--Main body content-->
   <body>
@@ -28,10 +28,10 @@
     <!--Main container for the top section of the page-->
     <div class="container">
       <!--This is the hero image-->
-      <img class="topBG" src="images/bg.png">
+      <img class="topBG" src="images/bg.png" alt="mysterious image of headphones with gradient">
       <!--This is a container for the top bar including the company logo in the top left and the dropdown menu in the top right-->
       <div class="top">
-        <img class="logo" src="images/logo.png">
+        <img class="logo" src="images/logo.png" alt="Abyss headphones company logo redesign">
         <!--Container for the dropdown menu in the top right-->
         <nav>
           <!--This utilise the checkbox hack to display the menu and is shown/hidden with a hamburger menu-->
@@ -44,40 +44,40 @@
             <div class="item">
               <!--Each item follows a simple formatting rule, item text, circle hover icon, item icon-->
               <a href="#">Headphones</a>
-              <img class="circle" src="images/circle.png">
-              <img class="icon" src="images/Headphones.png">
+              <img class="circle" src="images/circle.png" alt="image of a hollow circle">
+              <img class="icon" src="images/Headphones.png" alt="headphones icon">
             </div>
             <div class="item">
               <a href="#">Electronics</a>
-              <img class="circle" src="images/circle.png">
-              <img class="icon" src="images/Electronics.png">
+              <img class="circle" src="images/circle.png" alt="image of a hollow circle">
+              <img class="icon" src="images/Electronics.png" alt="amplifier icon">
             </div>
             <div class="item">
               <a href="#">Accessories</a>
-              <img class="circle" src="images/circle.png">
-              <img class="icon" src="images/Accessories.png">
+              <img class="circle" src="images/circle.png" alt="image of a hollow circle">
+              <img class="icon" src="images/Accessories.png" alt="cables icon">
             </div>
             <div class="item">
               <a href="#">News</a>
-              <img class="circle" src="images/circle.png">
-              <img class="icon" src="images/News.png">
+              <img class="circle" src="images/circle.png" alt="image of a hollow circle">
+              <img class="icon" src="images/News.png" alt="newspaper icon">
             </div>
             <div class="item">
               <a href="#">Support</a>
-              <img class="circle" src="images/circle.png">
-              <img class="icon" src="images/Support.png">
+              <img class="circle" src="images/circle.png" alt="image of a hollow circle">
+              <img class="icon" src="images/Support.png" alt="hand icon">
             </div>
             <div class="item">
               <a href="#">Contact</a>
-              <img class="circle" src="images/circle.png">
-              <img class="icon" src="images/Contact.png">
+              <img class="circle" src="images/circle.png" alt="image of a hollow circle">
+              <img class="icon" src="images/Contact.png" alt="phone icon">
             </div>
           </div>
         </nav>
       </div>
       <!--Animated text on the hero image-->
       <div class="titleText">
-        <h2 class="title1">Discover</h1>
+        <h2 class="title1">Discover</h2>
         <h1 class="title2">Diana</h1>
         <h3 class="subtitle">Beyond the farthest star...</h3>
       </div>
@@ -96,14 +96,14 @@
     <div class="bottom" id="bottom">
       <!--This div contains the relevant elements to display the user testimonials-->
       <div class="reviewSection">
-        <img class="leftLine" src="images/line.png">
-        <img class="reviews" id="reviews" src="images/Review1.png">
-        <img class="rightLine" src="images/line.png">
+        <img class="leftLine" src="images/line.png" alt="gradient line image">
+        <img class="reviews" id="reviews" src="images/Review1.png" alt="image of a user testimonial">
+        <img class="rightLine" src="images/line.png" alt="gradient line image">
       </div>
       <!--This div contains the product display elements in a centralised box that has been stylised with animated buttons-->
       <div class="productContainer">
         <div class="product">
-          <img class="dianaTC" src="images/dianaTC.png">
+          <img class="dianaTC" src="images/dianaTC.png" alt="image of Abyss Diana TC headphones with no background">
         </div>
         <h2 class="productTitle">Diana</h2>
         <h3 class="productSubtitle">TC</h3>
@@ -112,20 +112,18 @@
         <!--This section contains the animated colour buttons to make a colour selection although no actual functional implementation has been made, it still animates when you hover-->
         <div class="colours">
           <input type="checkbox" id="green" class="colourChoice">
-          <label for="green"><div class="colourVisible" style="background-color: green;"></div></label>
+          <label for="green" class="colourVisible" style="background-color: green;"></label>
           <input type="checkbox" id="red" class="colourChoice">
-          <label for="red"><div class="colourVisible" style="background-color: red;"></div></label>
+          <label for="red" class="colourVisible" style="background-color: red;"></label>
           <input type="checkbox" id="purple" class="colourChoice">
-          <label for="red"><div class="colourVisible" style="background-color: purple;"></div></label>
+          <label for="red" class="colourVisible" style="background-color: purple;"></label>
           <input type="checkbox" id="blue" class="colourChoice">
-          <label for="red"><div class="colourVisible" style="background-color: blue;"></div></label>
+          <label for="red" class="colourVisible" style="background-color: blue;"></label>
           <input type="checkbox" id="orange" class="colourChoice">
-          <label for="red"><div class="colourVisible" style="background-color: orange;"></div></label>
+          <label for="red" class="colourVisible" style="background-color: orange;"></label>
         </div>
         <!--This is the browse styles button which when clicked, opens the gallery-->
-        <button class="customiseButton" id="customiseButton">
-          <p class="customiseText">Browse Styles</p>
-        </button>
+        <button class="customiseButton" id="customiseButton">Browse Styles</button>
       </div>
     </div>
     <!--This section is just the text at the very bottom of the page. It also acts as the element the intersection observer is looking for to trigger the spin cycle event-->
